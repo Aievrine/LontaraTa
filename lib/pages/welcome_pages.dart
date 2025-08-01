@@ -29,7 +29,40 @@ class WellcomePage extends StatelessWidget{
             
           ),
           Container(height: 60, width: MediaQuery.of(context).size.width - 2 * defaultMargin,
-          child: ElevatedButton(onPressed: (){}, 
+          child: ElevatedButton(
+            onPressed: (){
+            showModalBottomSheet(
+              isScrollControlled: true,
+              context: context, builder: (context) {
+                return StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
+                  return Wrap(
+                    children: [ 
+                      // bagian modal
+                      Container(
+                        color: Colors.transparent,
+                        child: Container(
+                          margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+                          decoration: BoxDecoration(
+                            color: secondaryColor,
+                            borderRadius: BorderRadius.only(topRight: Radius.circular(40), 
+                            topLeft: Radius.circular(40))),
+                            child: Column(
+
+                              children: [
+                                // jarak
+                                SizedBox(height: 25,),
+                                Row(children: [
+                                  Text("Buat Akun Yuk !", style: whiteTextStyle.copyWith(fontSize: 20, color: dangerColor),),
+                                ],),           
+                                    Image.asset('assets/images/close.png', height: 30, width: 30,)],
+                            ),
+                        ),
+                      )
+                    ]
+                  );
+                }, );
+              });
+          }, 
           child: Text(
             'Buat Akun',
          style: whiteTextStyle.copyWith(
